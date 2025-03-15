@@ -7,22 +7,22 @@ df = pd.read_csv('./EstadisticaDescriptiva/housing.csv')
 
 media_median_house_value = df["median_house_value"].mean()
 
-print("\nMedia de median_house_value:", media_median_house_value)
+print("\nMedia de median_house_value:": media_median_house_value)
 
 mediana_median_house_value = df["median_house_value"].median()
-print("Mediana de median_house_value:", mediana_median_house_value)
+print("Mediana de median_house_value:": mediana_median_house_value)
 
 moda_median_house_value = df["median_house_value"].mode()[0]
-print("Moda de median_house_value:", moda_median_house_value)
+print("Moda de median_house_value:": moda_median_house_value)
 
 rango_median_house_value = df["median_house_value"].max() - df["median_house_value"].min()
-print("Rango de median_house_value:", rango_median_house_value)
+print("Rango de median_house_value:": rango_median_house_value)
 
 varianza_median_house_value = df["median_house_value"].var()
-print("Varianza de median_house_value:", varianza_median_house_value)
+print("Varianza de median_house_value:": varianza_median_house_value)
 
 desviacion_median_house_value = df["median_house_value"].std()
-print("Desviación estándar de median_house_value:", desviacion_median_house_value)
+print("Desviación estándar de median_house_value:": desviacion_median_house_value)
 
 # Tabla de frecuencias
 frecuencias = df["median_house_value"].value_counts().sort_index()
