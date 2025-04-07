@@ -47,3 +47,56 @@ print('/n DIstancia Manhattan entre cada una de las tiendas: ')
 print(distancias_punto2)
 print('/n DIstancia Chevyshev entre cada una de las tiendas: ')
 print(distancias_punto1)
+
+#Calcularemos las distancias entre todos los pares de puntos y determinaremos cuáles están más alejados entre sí y cuáles están más cercanos, utilizando las distancias Euclidiana, Manhattan y Chebyshev.
+#Ejercicio: Determinación de Distancias entre Puntos
+#Puntos en el Plano
+
+#Los puntos en el plano son los siguientes:
+
+#    Punto A: (2, 3)
+#   Punto B: (5, 4)
+#    Punto C: (1, 1)
+#    Punto D: (6, 7)
+#    Punto E: (3, 5)
+#    Punto F: (8, 2)
+#    Punto G: (4, 6)
+#    Punto H: (2, 1)
+
+# Definimos las coordenadas de los puntos en el plano
+puntos = {
+    'Punto A': (2, 3),
+    'Punto B': (5, 4),
+    'Punto C': (1, 1),
+    'Punto D': (6, 7),
+    'Punto E': (3, 5),
+    'Punto F': (8, 2),
+    'Punto G': (4, 6),
+    'Punto H': (2, 1)
+}
+
+# Convertimos las coordenadas en un DataFrame para facilitar el cálculo
+df_puntos = pd.DataFrame(puntos).T
+df_puntos.columns = ['X', 'Y']
+print('Coordenadas de los puntos en el plano:')
+print(df_puntos)
+
+# Inicializamos los DataFrames para almacenar las distancias
+distancias_euclidiana = pd.DataFrame(index=df_puntos.index, columns=df_puntos.index)
+distancias_manhattan = pd.DataFrame(index=df_puntos.index, columns=df_puntos.index)
+distancias_chebyshev = pd.DataFrame(index=df_puntos.index, columns=df_puntos.index)
+
+# Calculamos las distancias
+for i in df_puntos.index:
+    for j in df_puntos.index:
+        distancias_euclidiana.loc[i, j] = distance.euclidean(df_puntos.loc[i], df_puntos.loc[j])
+        distancias_manhattan.loc[i, j] = distance.cityblock(df_puntos.loc[i], df_puntos.loc[j])
+        distancias_chebyshev.loc[i, j] = distance.chebyshev(df_puntos.loc[i], df_puntos.loc[j])
+
+# Mostramos los resultados
+print('\nDistancia Euclidiana entre cada par de puntos:')
+print(distancias_euclidiana)
+print('\nDistancia Manhattan entre cada par de puntos:')
+print(distancias_manhattan)
+print('\nDistancia Chebyshev entre cada par de puntos:')
+print(distancias_chebyshev)
