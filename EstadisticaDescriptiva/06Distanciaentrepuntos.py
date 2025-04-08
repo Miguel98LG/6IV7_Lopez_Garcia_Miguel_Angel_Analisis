@@ -100,3 +100,26 @@ print('\nDistancia Manhattan entre cada par de puntos:')
 print(distancias_manhattan)
 print('\nDistancia Chebyshev entre cada par de puntos:')
 print(distancias_chebyshev)
+
+# Convertir todos los valores a float
+distancias_euclidiana = distancias_euclidiana.astype(float)
+distancias_manhattan = distancias_manhattan.astype(float)
+distancias_chebyshev = distancias_chebyshev.astype(float)
+
+# Eliminar las distancias de un punto consigo mismo (0s en la diagonal)
+euclidiana_stack = distancias_euclidiana.stack()
+manhattan_stack = distancias_manhattan.stack()
+chebyshev_stack = distancias_chebyshev.stack()
+
+# Filtrar valores iguales a 0 (misma coordenada)
+euclidiana_stack = euclidiana_stack[euclidiana_stack != 0]
+manhattan_stack = manhattan_stack[manhattan_stack != 0]
+chebyshev_stack = chebyshev_stack[chebyshev_stack != 0]
+
+# Obtener máximos y mínimos
+print(f'\nPuntos más alejados (Euclidiana): {euclidiana_stack.idxmax()} - Distancia: {euclidiana_stack.max()}')
+print(f'Puntos más cercanos (Euclidiana): {euclidiana_stack.idxmin()} - Distancia: {euclidiana_stack.min()}')
+print(f'\nPuntos más alejados (Manhattan): {manhattan_stack.idxmax()} - Distancia: {manhattan_stack.max()}')
+print(f'Puntos más cercanos (Manhattan): {manhattan_stack.idxmin()} - Distancia: {manhattan_stack.min()}')
+print(f'\nPuntos más alejados (Chebyshev): {chebyshev_stack.idxmax()} - Distancia: {chebyshev_stack.max()}')
+print(f'Puntos más cercanos (Chebyshev): {chebyshev_stack.idxmin()} - Distancia: {chebyshev_stack.min()}')
